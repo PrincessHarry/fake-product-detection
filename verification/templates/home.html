@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-2xl">
+        <div>
+            <h2 class="text-center text-3xl font-extrabold text-gray-900">Verify Product Authenticity</h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Ensure your product is genuine by entering the barcode or uploading an image.
+            </p>
+        </div>
+        <form id="verification-form" method="post" enctype="multipart/form-data" class="mt-8 space-y-6">
+            {% csrf_token %}
+            <div class="rounded-md shadow-sm -space-y-px">
+                <div>
+                    <label for="barcode" class="sr-only">Barcode</label>
+                    <input id="barcode" name="barcode" type="text" required
+                           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                           placeholder="Enter Barcode">
+                </div>
+                <div>
+                    <label for="image_url" class="sr-only">Product Image</label>
+                    <input id="image_url" name="image_url" type="file" capture="environment"
+                           class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
+                </div>
+            </div>
+
+            <div>
+                <button type="submit"
+                        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Verify Product
+                </button>
+            </div>
+        </form>
+
+        <div id="result" class="mt-6 hidden">
+            <h3 class="text-lg font-semibold text-gray-900">Verification Result</h3>
+            <p id="result-details" class="mt-2 text-sm text-gray-600"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('verification-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+
+        const response = await fetch('/verify/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+            body: formData,
+        });
+
+        const data = await response.json();
+        document.getElementById('result-details').textContent = data.result;
+        document.getElementById('result').classList.remove('hidden');
+    });
+</script>
+{% endblock %}

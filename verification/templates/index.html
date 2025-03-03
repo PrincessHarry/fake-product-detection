@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="hero-section bg-blue-600 text-white py-20">
+    <div class="container mx-auto text-center">
+        <h1 class="text-5xl font-bold mb-4">Fake Product Detection & Verification</h1>
+        <p class="text-xl mb-8">Protect yourself from counterfeit products with our advanced verification system.</p>
+        <a href="{% url 'verify-product' %}" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100">Get Started</a>
+    </div>
+</div>
+
+<div class="features-section container mx-auto py-16">
+    <h2 class="text-3xl font-bold text-center mb-12">Key Features</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="feature-card bg-white p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold mb-4">Barcode Scanning</h3>
+            <p class="text-gray-700">Scan barcodes to instantly verify product authenticity.</p>
+        </div>
+        <div class="feature-card bg-white p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold mb-4">Image Recognition</h3>
+            <p class="text-gray-700">Upload product images for AI-powered verification.</p>
+        </div>
+        <div class="feature-card bg-white p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold mb-4">User Reporting</h3>
+            <p class="text-gray-700">Report suspected counterfeit products to help others.</p>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section bg-gray-100 py-16">
+    <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Verify?</h2>
+        <p class="text-xl mb-8">Start protecting yourself from fake products today.</p>
+        <a href="{% url 'verify-product' %}" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">Try It Now</a>
+    </div>
+</div>
+{% endblock %}
