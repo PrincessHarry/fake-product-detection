@@ -21,7 +21,6 @@ docstring_parser==0.16
 duckduckgo_search==7.4.5
 executing==2.2.0
 frozenlist==1.5.0
-genai==2.1.0
 gitdb==4.0.12
 GitPython==3.1.44
 google-ai-generativelanguage==0.6.15
@@ -50,10 +49,12 @@ markdown-it-py==3.0.0
 matplotlib-inline==0.1.7
 mdurl==0.1.2
 multidict==6.1.0
+packaging==24.2
 parso==0.8.4
 phi==0.6.7
 phidata==2.7.10
 pillow==11.1.0
+pipdeptree==2.25.0
 prompt_toolkit==3.0.50
 propcache==0.3.0
 proto-plus==1.26.0
